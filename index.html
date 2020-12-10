@@ -6,37 +6,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    .wrapper {
-      display: flex;
-      flex-direction: column;
+    body {
+      background-color: green;
     }
   </style>
 </head>
 
 <body>
-  <h1>TESTING POST MESSAGE</h1>
-  <img src="https://placekitten.com/1200/800">
-  <section class="wrapper">
-    <textarea id="text"></textarea>
-    <button id="btn">Send Message</button>
-  </section>
+  <h2>IFRAME CONTENT</h2>
 </body>
 <script type="text/javascript">
-  const btn = document.getElementById("btn"),
-        text = document.getElementById("text");
-
-  btn.addEventListener("click", function () {
-      sendMessage(text.value);
-      text.value = "";
-  });
-
   function sendMessage(message) {
       console.log('sending message', message);
-      const response = window.postMessage(JSON.stringify({
+      const response = window.top.postMessage(JSON.stringify({
           message: message,
           time: new Date()
-      }), '*');
+      }), 'https://qa.expand.merckgroup.com:4502/');
       console.log('response', response);
   }
+
+  (function init() {
+    let timeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(timeout);
+      const currentWidth = window.innerWidth;
+      if(currentWidth > 1600) {
+        timeout = setTimeout(console.log.bind(this, '> 1600 => new height: 600'));
+        return 600;
+      } else if(currentWidth > 1200 && currentWidth < 1600) {
+        timeout = setTimeout(console.log.bind(this, '> 1200 && < 1600 => new height: 800'));
+        return 800;
+      } else if(currentWidth > 760 && currentWidth < 1200) {
+        timeout = setTimeout(console.log.bind(this, '> 760 && < 1200 => new height: 1000'));
+        return 1000;
+      } else if(currentWidth < 760) {
+        timeout = setTimeout(console.log.bind(this, '< 760 => new height: 1200'));
+        return 1200;
+      }
+    });
+  })();
 </script>
 </html>
