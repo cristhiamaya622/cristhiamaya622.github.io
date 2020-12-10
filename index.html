@@ -17,28 +17,9 @@
 </body>
 <script type="text/javascript">
 
-
-  function triggerHeightChange() {
-    const currentWidth = window.innerWidth;
-    if(currentWidth > 1600) {
-      return 600;
-    } else if(currentWidth > 1200 && currentWidth < 1600) {
-      console.log('> 1200 && < 1600 => new height: 800');
-      return 800;
-    } else if(currentWidth > 760 && currentWidth < 1200) {
-      console.log('> 760 && < 1200 => new height: 1000');
-      return 1000;
-    } else if(currentWidth < 760) {
-      console.log('< 760 => new height: 1200');
-      return 1200;
-    }
-  };
-
-  function sendMessage(message) {
-      console.log('sending message', message);
-      const newHeight = triggerHeightChange();
+  function sendMessage(newHeight) {
+      console.log('setting new Height', newHeight);
       const response = window.top.postMessage(newHeight, 'https://qa.expand.merckgroup.com:4502/');
-      console.log('response', response);
   }
 </script>
 </html>
