@@ -16,10 +16,9 @@
   <h2>IFRAME CONTENT</h2>
 </body>
 <script type="text/javascript">
-
   function sendMessage(newHeight) {
-      console.log('setting new Height', newHeight);
-      const response = window.top.postMessage(newHeight, 'https://qa.expand.merckgroup.com:4502/');
+    console.log('setting new Height', newHeight);
+    const response = window.top.postMessage(newHeight, 'https://qa.expand.merckgroup.com:4502/');
   }
 </script>
 </html>
