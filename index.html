@@ -17,8 +17,7 @@
 </body>
 <script type="text/javascript">
   function sendMessage(newHeight) {
-    console.log('setting new Height', newHeight);
-    const response = window.top.postMessage(newHeight, 'https://qa.expand.merckgroup.com:4502/');
+    window.top.postMessage(newHeight, window.parent);
   }
 </script>
 </html>
