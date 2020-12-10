@@ -8,8 +8,25 @@
 <body>
   <h1>TESTING POST MESSAGE</h1>
   <img src="https://placekitten.com/1200/800">
+  <textarea id="text"></textarea>
+  <button id="btn">Send Message</button>
 </body>
 <script type="text/javascript">
-  window.postMessage('frame', { customHeight: '500' }, { data: 'data' });
+  const btn = document.getElementById("btn"),
+        text = document.getElementById("text");
+
+  btn.addEventListener("click", function () {
+      sendMessage(text.value);
+      text.value = "";
+  });
+
+  function sendMessage(message) {
+      console.log('sending message', message);
+      if (!message || !message.length) return;
+      window.postMessage(JSON.stringify({
+          message: message,
+          time: new Date()
+      }), 'http://receiver.com');
+  }
 </script>
 </html>
