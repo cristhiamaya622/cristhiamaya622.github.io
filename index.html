@@ -32,11 +32,11 @@
 
   function sendMessage(message) {
       console.log('sending message', message);
-      if (!message || !message.length) return;
-      window.postMessage(JSON.stringify({
+      const response = window.postMessage(JSON.stringify({
           message: message,
           time: new Date()
       }), '*');
+      console.log('response', response);
   }
 </script>
 </html>
