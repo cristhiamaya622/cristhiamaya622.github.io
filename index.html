@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
 </head>
+
 <body>
   <h1>TESTING POST MESSAGE</h1>
   <img src="https://placekitten.com/1200/800">
-  <textarea id="text"></textarea>
-  <button id="btn">Send Message</button>
+  <section class="wrapper">
+    <textarea id="text"></textarea>
+    <button id="btn">Send Message</button>
+  </section>
 </body>
 <script type="text/javascript">
   const btn = document.getElementById("btn"),
@@ -26,7 +36,7 @@
       window.postMessage(JSON.stringify({
           message: message,
           time: new Date()
-      }), 'http://receiver.com');
+      }), 'https://cristhiamaya622.github.io/');
   }
 </script>
 </html>
