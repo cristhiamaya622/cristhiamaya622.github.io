@@ -17,7 +17,7 @@
 </body>
 <script type="text/javascript">
   function sendMessage(newHeight) {
-    window.top.postMessage(newHeight, '*');
+    window.parent.postMessage(newHeight, '*');
   }
 </script>
 </html>
